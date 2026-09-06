@@ -1,0 +1,26 @@
+# Runtime dependencies for training / analysis pinned to the versions used
+# for the seed-43 bit-identical reproducibility check.
+#
+# Install with:   pip install -r requirements.txt
+# Or use the conda alternative in environment.yml for the full stack
+# (including the exact CUDA + cuDNN pinned in torch's +cu124 wheel).
+#
+# ---- Training-path (train.py + everything under lib/) -------------------
+torch==2.6.0
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.14.0
+scikit-learn==1.9.0
+matplotlib==3.9.1
+wandb==0.27.2
+tqdm==4.67.1
+Pillow==11.0.0
+PyYAML==6.0.2
+
+# ---- Analysis-path (collect_abs_result.py, lib/analyze_utils/, rdm_*.py,
+#                     lib/analysis/, analyze.py)
+seaborn==0.13.2
+plotly==5.22.0
+kaleido==0.2.1
+mat73==0.65
+h5py==3.11.0        # transitive dep of mat73 (not declared upstream)

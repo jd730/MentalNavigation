@@ -1,0 +1,41 @@
+# Conda environment for mental_navigation.
+#
+# Creates a Python 3.11 env with the exact torch (+cu124) wheel used for
+# the seed-43 bit-identical reproducibility runs. Includes both the
+# training-path dependencies and the analysis extras.
+#
+# Usage:
+#   conda env create -f environment.yml
+#   conda activate mental
+#
+# GPU note: the torch wheel bundles CUDA 12.4 + cuDNN 9.1 runtimes, so
+# only the host NVIDIA driver has to be new enough (>= 550 recommended).
+# See README.md for the full reproducibility notes.
+
+name: mental
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      # Training path
+      - torch==2.6.0
+      - numpy==1.26.4
+      - pandas==2.2.2
+      - scipy==1.14.0
+      - scikit-learn==1.9.0
+      - matplotlib==3.9.1
+      - wandb==0.27.2
+      - tqdm==4.67.1
+      - Pillow==11.0.0
+      - PyYAML==6.0.2
+      # Analysis path
+      - seaborn==0.13.2
+      - plotly==5.22.0
+      - kaleido==0.2.1
+      - mat73==0.65
+      - h5py==3.11.0        # transitive dep of mat73 (not declared upstream)
